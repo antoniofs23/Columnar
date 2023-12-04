@@ -61,7 +61,7 @@ for i in "${!arr_newIDs[@]}"; do
     fi
 done
 
-# declare a way to read F-key presses
+# declare a way to read key presses
 read_key_press() {
     if read -sN1 key_press; then
         while read -sN1 -t 0.001 ; do
@@ -70,19 +70,23 @@ read_key_press() {
     fi
 }
 
-declare -a fnkey
-for x in {1..24}; do
-    raw=$(tput kf$x | cat -A)
-    fnkey[$x]=${raw#^[}
-done
+#declare -a fnkey
+#for x in {1..24}; do
+    #raw=$(tput kf$x | cat -A)
+    #fnkey[$x]=${raw#^[}
+    #echo $raw
+    #echo $fnkey[$x]
+#done
 
 #Bind diffferent window tiling presets to F-keys
 while read_key_press; do
     case "${key_press}" in
-        $'\e'${fnkey[1]}) # F1: move active window to center
+        #$'\e'${fnkey[1]}) # F1: move active window to center
+        $'\e[1;5P') # ctrl+F1
+            # moves the active window to center left
             $(wmctrl -ir ${arr_IDs[$activeIdx]} -e 0,${arr_xPos[$center_tile]},0,$horiz_len,$vert_res);
             $(wmctrl -ir ${arr_IDs[$center_tile]} -e 0,${arr_xPos[$activeIdx]},0,$horiz_len,$vert_res);
             ;;
-        ^C) exit ;;
     esac
 done
+

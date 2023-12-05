@@ -44,28 +44,6 @@ if [ $((count%2)) -eq 0 ];
         center_tile=$(($count/2)); # if odd
 fi
 
-# declare a way to read key presses
-# !!! This only works when reading keypresses from the active terminal
-#read_key_press() {
-    #if read -sN1 key_press; then
-        #while read -sN1 -t 0.001 ; do
-            #key_press+="${REPLY}"
-        #done
-    #fi
-#}
-
-##Bind diffferent window tiling presets to F-keys
-#while read_key_press; do
-    #case "${key_press}" in
-        #$'\e[1;5P') # ctrl+F1
-            ## moves the active window to center left
-            #$(wmctrl -ir ${arr_IDs[$activeIdx]} -e 0,${arr_xPos[$center_tile]},0,$horiz_len,$vert_res);
-            #$(wmctrl -ir ${arr_IDs[$center_tile]} -e 0,${arr_xPos[$activeIdx]},0,$horiz_len,$vert_res);
-            #;;
-    #esac
-#done
-
-
 # read global keyboard inputs i.e. not just from the terminal
 # important keycodes:
 xinput test-xi2 --root 3 | grep -A2 --line-buffered RawKeyRelease | while read -r line;
@@ -74,45 +52,33 @@ do
     then
         key=$( echo $line | sed "s/[^0-9]*//g")
 
+        # add cases 
         case "${key}" in
-            73) # F7
+
+            73) # F7 -> swap active window to center
                 # get active window ID
                 act_winID=$(wmctrl -lp | grep $(xprop -root | grep _NET_ACTIVE_WINDOW | head -1 | \
                     awk '{print $5}' | sed 's/,//' | sed 's/^0x/0x0/') | awk '{print $1}')
 
-                #store new window positions
-                newWin_xPos=$(wmctrl -lG | awk '{print $6}')
-                newIDs=$(wmctrl -lG | awk '{print $1}')
-
-                arr_nWxPos=($newWin_xPos)
-                arr_newIDs=($newIDs)
                 
                 #get the index of the active window
-                for i in "${!arr_newIDs[@]}"; do
-                    if [[ "${arr_newIDs[$i]}" = "$act_winID" ]]; then
+                for i in "${!arr_IDs[@]}"; do
+                    if [[ "${arr_IDs[$i]}" = "$act_winID" ]]; then
                         activeIdx=${i};
                     fi
                 done
                 
                 #swap active window with center window
-                $(wmctrl -ir ${arr_newIDs[$activeIdx]} -e 0,${arr_xPos[$center_tile]},0,$horiz_len,$vert_res);
-                $(wmctrl -ir ${arr_newIDs[$center_tile]} -e 0,${arr_xPos[$activeIdx]},0,$horiz_len,$vert_res);
+                $(wmctrl -ir ${arr_IDs[$activeIdx]} -e 0,${arr_xPos[$center_tile]},0,$horiz_len,$vert_res);
+                $(wmctrl -ir ${arr_IDs[$center_tile]} -e 0,${arr_xPos[$activeIdx]},0,$horiz_len,$vert_res);
+
                 ;;
-            74) # F8
-                #store new window positions
-                newWin_xPos=$(wmctrl -lG | awk '{print $6}')
-                newIDs=$(wmctrl -lG | awk '{print $1}')
-
-                arr_nWxPos=($newWin_xPos)
-                arr_newIDs=($newIDs)
-
-                # automatically tile the windows into vertical columns
-                count=0 # count number of windows
-                for ((ii=0; ii < ${#arr_newIDs[@]} ; ii++)) ; do    
+            74) # F8 -> reset to initial window positions
+                
+                for ((ii=0; ii < ${#arr_IDs[@]} ; ii++)) ; do    
                     
-                    $(wmctrl -ir ${arr_newIDs[ii]} -e 0,${arr_xPos[ii]},0,$horiz_len,$vert_res)
-                    $(wmctrl -ir ${arr_newIDs[ii]} -b toggle,maximized_vert)
-                    ((count++))
+                    $(wmctrl -ir ${arr_IDs[ii]} -e 0,${arr_xPos[ii]},0,$horiz_len,$vert_res)
+                    $(wmctrl -ir ${arr_IDs[ii]} -b toggle,maximized_vert)
                 done
 
         esac

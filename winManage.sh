@@ -44,6 +44,8 @@ if [ $((count%2)) -eq 0 ];
         center_tile=$(($count/2)); # if odd
 fi
 
+#start a counter
+count=0
 # read global keyboard inputs i.e. not just from the terminal
 # important keycodes:
 xinput test-xi2 --root 3 | grep -A2 --line-buffered RawKeyRelease | while read -r line;
@@ -67,11 +69,16 @@ do
                         activeIdx=${i};
                     fi
                 done
-                
-                #swap active window with center window
-                $(wmctrl -ir ${arr_IDs[$activeIdx]} -e 0,${arr_xPos[$center_tile]},0,$horiz_len,$vert_res);
-                $(wmctrl -ir ${arr_IDs[$center_tile]} -e 0,${arr_xPos[$activeIdx]},0,$horiz_len,$vert_res);
-
+                if [ $((count)) -gt 0 ]; 
+                    then
+                        echo $count
+                    else
+                        #swap active win to center
+                        $(wmctrl -ir ${arr_IDs[$activeIdx]} -e 0,${arr_xPos[$center_tile]},0,$horiz_len,$vert_res);
+                        $(wmctrl -ir ${arr_IDs[$center_tile]} -e 0,${arr_xPos[$activeIdx]},0,$horiz_len,$vert_res);
+                        echo "done"
+                fi
+                ((count++))
                 ;;
             74) # F8 -> reset to initial window positions
                 
@@ -80,7 +87,7 @@ do
                     $(wmctrl -ir ${arr_IDs[ii]} -e 0,${arr_xPos[ii]},0,$horiz_len,$vert_res)
                     $(wmctrl -ir ${arr_IDs[ii]} -b toggle,maximized_vert)
                 done
-
+                ;;
         esac
     fi
 done

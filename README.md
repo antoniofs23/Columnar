@@ -1,1 +1,1 @@
-# LinuxWindowTiling
+# ezTile

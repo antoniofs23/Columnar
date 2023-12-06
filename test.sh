@@ -1,4 +1,7 @@
 #!/bin/bash
+
+
+#testing out bubble sort
 array=(5 3 2 1 4)
 echo "${array[*]}"
 

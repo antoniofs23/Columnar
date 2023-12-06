@@ -1,12 +1,20 @@
-# testing reading background key press
-xinput test-xi2 --root 3 | grep -A2 --line-buffered RawKeyRelease | while read -r line;
-do
-    if [[ $line == *"detail"* ]];
-    then
-        key=$( echo $line | sed "s/[^0-9]*//g")
+#!/bin/bash
+array=(5 3 2 1 4)
+echo "${array[*]}"
 
-        #Do something with the key
-        echo $key
-    fi
+size=${#array[@]}
+
+for (( i=0; i<size-1; i++ )); do
+
+   for (( j=0; j<size-i-1; j++ )); do
+      if (( array[j] > array[j+1] )); then
+         tmp=${array[j]}
+         array[j]=${array[j+1]}
+         array[j+1]=$tmp
+      fi
+   done
 
 done
+
+echo "Sorted array:"
+echo "${array[*]}"

@@ -12,16 +12,29 @@ do
         # add cases 
         case "${key}" in
             73) # F7 -> initialize tiling and adjust for new or closed window 
-                # check if any windows are minimized and ignore them
-                izMinimized() {
-                    xprop -id "$1" | grep -Fq 'window state: Iconic' # Iconic = minimized
-                }
                 
-                # get all window IDs -- first col
-                windowIDs=$(wmctrl -lG | awk '{print $1}')
+                # check if any windows are minimized and ignore them
+                arr_IDs=()
+                for id in $(wmctrl -l | cut -f1 -d' '); do
+                    #check if minimized
+                    isMin=$(xprop -id "$id" | grep -F 'window state: Iconic')
+                    
+                    if [ -z "$isMin" ];
+                    then
+                        #echo $"not min"
+                        arr_IDs+=($id)
+                    #else
+                        #echo $"is min"
+                    fi
+                done
+                #printf '%s\n' "${windowIDs[@]}"
+
+                #windowIDs=$(wmctrl -lG | awk '{print $1}')
 
                 # get number of windows to tile
-                winTiles=$(wmctrl -lG | awk 'END {print NR}')
+                #winTiles=$(wmctrl -lG | awk 'END {print NR}')
+                # compute length of ID array
+                winTiles=${#arr_IDs[@]}
 
                 # get monitor resolution -- first col
                 resolution=$(xrandr | grep "*" | awk '{print $1}')
@@ -38,7 +51,6 @@ do
                 x_pos=$(seq 0 $horiz_len $horiz_res)
 
                 # turn IDs and x_pos into array so that they're interable
-                arr_IDs=($windowIDs)
                 arr_xPos=($x_pos)
 
                 # automatically tile the windows into vertical columns
@@ -76,7 +88,8 @@ do
                         activeIdx=${i};
                     fi
                 done
-            
+
+                #rename some variables to keep whats left of my sanity 
                 activeID=${arr_IDs[$activeIdx]}       # active window ID
                 activeLoc=${arr_xPos[$activeIdx]}     # active window location
                 centralLoc=${arr_xPos[$center_tile]}  # central location

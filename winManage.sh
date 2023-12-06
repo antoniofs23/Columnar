@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# simple window tiler using shell script,
+# simple window tiler using
 # wmctrl, and linux command line tools
-# Best used for ultrawide monitors
+# Best used for ultrawide monitors 
 
 # use case:
 #           horizontally tiles your open windows
@@ -33,18 +33,9 @@ do
                     
                     if [ -z "$isMin" ];
                     then
-                        #echo $"not min"
                         arr_IDs+=($id)
-                    #else
-                        #echo $"is min"
                     fi
                 done
-                #printf '%s\n' "${windowIDs[@]}"
-
-                #windowIDs=$(wmctrl -lG | awk '{print $1}')
-
-                # get number of windows to tile
-                #winTiles=$(wmctrl -lG | awk 'END {print NR}')
                 # compute length of ID array
                 winTiles=${#arr_IDs[@]}
 

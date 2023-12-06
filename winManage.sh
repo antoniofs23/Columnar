@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# simple window tiler using
-# wmctrl, and linux command line tools
+# simple window tiler using, xdotool & wmctrl 
 # Best used for ultrawide monitors 
 
 # use case:
@@ -10,6 +9,7 @@
 #
 #    F7: auto-tiles all windows into horizontal stacks
 #    F8: swaps the active window to center tile
+#    F9: hides active window   
 #
 #    If a window is closed or another is open you can re-tile
 #    by pressing F7
@@ -21,6 +21,24 @@ do
     then
         key=$( echo $line | sed "s/[^0-9]*//g")
 
+        # get active window ID
+        act_winID=$(wmctrl -lp | grep $(xprop -root | grep _NET_ACTIVE_WINDOW | head -1 | \
+            awk '{print $5}' | sed 's/,//' | sed 's/^0x/0x0/') | awk '{print $1}')
+
+                
+        #get the index of the active window
+        for i in "${!arr_IDs[@]}"; do
+            if [[ "${arr_IDs[$i]}" = "$act_winID" ]]; then
+                activeIdx=${i};
+            fi
+        done
+
+        #rename some variables to keep whats left of my sanity 
+        activeID=${arr_IDs[$activeIdx]}       # active window ID
+        activeLoc=${arr_xPos[$activeIdx]}     # active window location
+        centralLoc=${arr_xPos[$center_tile]}  # central location
+        centralWinID=${arr_IDs[$center_tile]} # central tile ID
+       
         # add cases 
         case "${key}" in
             73) # F7 -> initialize tiling and adjust for new or closed window 
@@ -80,28 +98,14 @@ do
                     $(wmctrl -ir ${arr_IDs[ii]} -e 0,${arr_xPos[ii]},0,$horiz_len,$vert_res)
                     $(wmctrl -ir ${arr_IDs[ii]} -b toggle,maximized_vert)
                 done
-                # get active window ID
-                act_winID=$(wmctrl -lp | grep $(xprop -root | grep _NET_ACTIVE_WINDOW | head -1 | \
-                    awk '{print $5}' | sed 's/,//' | sed 's/^0x/0x0/') | awk '{print $1}')
-
-                
-                #get the index of the active window
-                for i in "${!arr_IDs[@]}"; do
-                    if [[ "${arr_IDs[$i]}" = "$act_winID" ]]; then
-                        activeIdx=${i};
-                    fi
-                done
-
-                #rename some variables to keep whats left of my sanity 
-                activeID=${arr_IDs[$activeIdx]}       # active window ID
-                activeLoc=${arr_xPos[$activeIdx]}     # active window location
-                centralLoc=${arr_xPos[$center_tile]}  # central location
-                centralWinID=${arr_IDs[$center_tile]} # central tile ID
                 
                 #swap active win to center
                 $(wmctrl -ir $activeID -e 0,$centralLoc,0,$horiz_len,$vert_res);
                 $(wmctrl -ir $centralWinID -e 0,$activeLoc,0,$horiz_len,$vert_res);
                 ;;
+            75) # F9 -> hide active window
+                $(xdotool windowminimize $(xdotool getactivewindow))
+
         esac
     fi
 done

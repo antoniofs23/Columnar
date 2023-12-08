@@ -35,8 +35,6 @@ do
 
         #rename some variables to keep whats left of my sanity 
         activeID=${arr_IDs[$activeIdx]}       # active window ID
-        activeLoc=${arr_xPos[$activeIdx]}     # active window location
-        centralLoc=${arr_xPos[$center_tile]}  # central location
         centralWinID=${arr_IDs[$center_tile]} # central tile ID
        
         # add cases 
@@ -44,8 +42,12 @@ do
             73) # F7 -> initialize tiling and adjust for new or closed window 
                 
                 # check if any windows are minimized and ignore them
+                # also account for differences in the FRAME size of each window 
+                # which i refer to as padding here
                 arr_IDs=()
-                padding=() # also compute the padding on a window
+                w_padding=() # width padding 
+                x_padding=() # x-pos padding
+                
                 for id in $(wmctrl -l | cut -f1 -d' '); do
                     #check if minimized
                     isMin=$(xprop -id "$id" | grep -F 'window state: Iconic')
@@ -53,13 +55,38 @@ do
                     if [ -z "$isMin" ];
                     then
                         arr_IDs+=($id)
-                        padding+=($(xprop -id "$id" | grep FRAME | awk -F'^0-9.]' '{print $NF}'))
+                        
+                        if [[ $(xprop -id "$id" | grep FRAME | awk '{print $5}') ]]; then
+                            w_padding+=($(xprop -id "$id" | grep FRAME | awk '{print $5}'))
+                        else
+                            w_padding+=(0) #to append to an array need (*)
+                        fi
+                        
+                        if [[ $(xprop -id "$id" | grep FRAME | awk '{print $4}') ]]; then
+                            x_padding+=($(xprop -id "$id" | grep FRAME | awk '{print $4}'))
+                        else
+                            x_padding+=(0)
+                        fi
                     fi
                 done
-                printf '%s\n' "${padding[@]}"
                 # compute length of ID array
                 winTiles=${#arr_IDs[@]}
+                
+                # compute the average padding
+                total_x=0; total_w=0
+                for ((ii=0; ii < ${#x_padding[ii]} ; ii++)); do
+                    # remove the stupid trailing commas
+                    temp_w=${w_padding[ii]}; temp_w=${temp_w[@]%,}
+                    temp_x=${x_padding[ii]}; temp_x=${temp_w[@]%,}
+                    total_x=$(($total_x+$temp_x))
+                    total_w=$(($total_w+$temp_w)) 
+                done
+                x_avg=$(($total_x/$winTiles))
+                w_avg=$(($total_w/$winTiles))
 
+                echo $x_avg
+                echo $w_avg
+                #printf '%s\n' "${w_padding[@]}"
                 # get monitor resolution -- first col
                 resolution=$(xrandr | grep "*" | awk '{print $1}')
 
@@ -79,13 +106,31 @@ do
 
                 # automatically tile the windows into vertical columns
                 count=0 # count number of windows
+                st_trim_w=(); st_trim_x=()
+                #account for window padding summing
+                padd=$(($winTiles*2))
                 for ((ii=0; ii < ${#arr_IDs[@]} ; ii++)) ; do    
-    
-                    $(wmctrl -ir ${arr_IDs[ii]} -e 0,${arr_xPos[ii]},0,$horiz_len,$vert_res)
+                    # adjust padding
+                    w_pad=${w_padding[ii]}; w_pad=${w_pad[@]%,} #remove traling comma for arithmetic
+                    if [[ -z "$w_pad" ]]; then
+                        # add average padding if none exists
+                        trim_w=$(($horiz_len-$w_avg*2))
+                    else
+                        trim_w=$(($horiz_len-$w_pad/$padd))
+                    fi
+                    x_pos=${arr_xPos[ii]}; x_pad=${x_padding[ii]};x_pad=${x_pad[@]%,}
+                    if [[ -z "$x_pad" ]]; then
+                        trim_x=$(($x_pos+$x_avg*2))
+                    else
+                        trim_x=$(($x_pos+$x_pad/$padd))
+                    fi
+                    
+                    st_trim_w+=($trim_w); st_trim_x+=($trim_x)
+                    $(wmctrl -ir ${arr_IDs[ii]} -e 0,$trim_x,0,$trim_w,$vert_res)
                     $(wmctrl -ir ${arr_IDs[ii]} -b toggle,maximized_vert)
                     ((count++))
                 done
-
+                #printf '%s\n' "${st_trim_x[@]}"
                 # swap active window to center tile [if even then one of center]
                 if [ $((count%2)) -eq 0 ];
                     then
@@ -97,14 +142,13 @@ do
             ;;
             74) # F8 -> swap active window to center
                 for ((ii=0; ii < ${#arr_IDs[@]} ; ii++)) ; do    
-                    
-                    $(wmctrl -ir ${arr_IDs[ii]} -e 0,${arr_xPos[ii]},0,$horiz_len,$vert_res)
+                    $(wmctrl -ir ${arr_IDs[ii]} -e 0,${st_trim_x[ii]},0,${st_trim_w[ii]},$vert_res)
                     $(wmctrl -ir ${arr_IDs[ii]} -b toggle,maximized_vert)
                 done
                 
                 #swap active win to center
-                $(wmctrl -ir $activeID -e 0,$centralLoc,0,$horiz_len,$vert_res);
-                $(wmctrl -ir $centralWinID -e 0,$activeLoc,0,$horiz_len,$vert_res);
+                $(wmctrl -ir $activeID -e 0,${st_trim_x[center_tile]},0,${st_trim_w[activeIdx]},$vert_res);
+                $(wmctrl -ir $centralWinID -e 0,${st_trim_x[activeIdx]},0,${st_trim_w[center_tile]},$vert_res);
                 ;;
             75) # F9 -> hide active window
                 $(xdotool windowminimize $(xdotool getactivewindow))

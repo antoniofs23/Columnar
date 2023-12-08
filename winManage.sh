@@ -112,22 +112,25 @@ do
                 for ((ii=0; ii < ${#arr_IDs[@]} ; ii++)) ; do    
                     # adjust padding
                     w_pad=${w_padding[ii]}; w_pad=${w_pad[@]%,} #remove traling comma for arithmetic
+                    x_pos=${arr_xPos[ii]}; x_pad=${x_padding[ii]};x_pad=${x_pad[@]%,}
                     if [[ -z "$w_pad" ]]; then
                         # add average padding if none exists
-                        trim_w=$(($horiz_len-$w_avg*2))
-                    else
-                        trim_w=$(($horiz_len-$w_pad/$padd))
-                    fi
-                    x_pos=${arr_xPos[ii]}; x_pad=${x_padding[ii]};x_pad=${x_pad[@]%,}
-                    if [[ -z "$x_pad" ]]; then
+                        trim_w=$(($horiz_len-$x_avg*2))
                         trim_x=$(($x_pos+$x_avg*2))
                     else
+                        trim_w=$(($horiz_len-$x_pad/$padd))
                         trim_x=$(($x_pos+$x_pad/$padd))
                     fi
+                    #x_pos=${arr_xPos[ii]}; x_pad=${x_padding[ii]};x_pad=${x_pad[@]%,}
+                    #if [[ -z "$x_pad" ]]; then
+                        #trim_x=$(($x_pos+$x_avg*2))
+                    #else
+                        #trim_x=$(($x_pos+$x_pad/$padd))
+                    #fi
                     
                     st_trim_w+=($trim_w); st_trim_x+=($trim_x)
                     $(wmctrl -ir ${arr_IDs[ii]} -e 0,$trim_x,0,$trim_w,$vert_res)
-                    $(wmctrl -ir ${arr_IDs[ii]} -b toggle,maximized_vert)
+                    #$(wmctrl -ir ${arr_IDs[ii]} -b toggle,maximized_vert)
                     ((count++))
                 done
                 #printf '%s\n' "${st_trim_x[@]}"
@@ -138,7 +141,6 @@ do
                     else
                         center_tile=$(($count/2)); # if odd
                 fi
-
             ;;
             74) # F8 -> swap active window to center
                 for ((ii=0; ii < ${#arr_IDs[@]} ; ii++)) ; do    

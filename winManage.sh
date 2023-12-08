@@ -2,7 +2,7 @@
 
 # simple window tiler using, xdotool & wmctrl 
 # Best used for ultrawide monitors 
-
+# 
 # use case:
 #           horizontally tiles your open windows
 #           Ignores all minized windows
@@ -45,6 +45,7 @@ do
                 
                 # check if any windows are minimized and ignore them
                 arr_IDs=()
+                padding=() # also compute the padding on a window
                 for id in $(wmctrl -l | cut -f1 -d' '); do
                     #check if minimized
                     isMin=$(xprop -id "$id" | grep -F 'window state: Iconic')
@@ -52,8 +53,10 @@ do
                     if [ -z "$isMin" ];
                     then
                         arr_IDs+=($id)
+                        padding+=($(xprop -id "$id" | grep FRAME | awk -F'^0-9.]' '{print $NF}'))
                     fi
                 done
+                printf '%s\n' "${padding[@]}"
                 # compute length of ID array
                 winTiles=${#arr_IDs[@]}
 

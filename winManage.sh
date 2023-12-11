@@ -74,6 +74,7 @@ do
                 # compute length of ID array
                 winTiles=${#arr_IDs[@]}
                 
+                
                 # compute the average padding
                 total_x=0; total_w=0
                 for ((ii=0; ii < ${#x_padding[ii]} ; ii++)); do
@@ -86,8 +87,8 @@ do
                 x_avg=$(($total_x/$winTiles))
                 w_avg=$(($total_w/$winTiles))
 
-                echo $x_avg
-                echo $w_avg
+                #echo $x_avg
+                #echo $w_avg
                 #printf '%s\n' "${w_padding[@]}"
                 # get monitor resolution -- first col
                 resolution=$(xrandr | grep "*" | awk '{print $1}')
@@ -100,18 +101,27 @@ do
                 # returned as integer
                 horiz_len=$(($horiz_res/$winTiles))
 
-                # get the x position of each window
-                x_pos=$(seq 0 $horiz_len $horiz_res)
-
+                # account for only one window
+                # dont want one tile to be super large
+                if [[ ${winTiles} == 1 ]]; then
+                    # make the tile a little smaller
+                    horiz_len=$(($horiz_len*99/100)) # only 90% and not 100%
+                    x_pos=$(($horiz_res-$horiz_len))
+                else
+                    # get the x position of each window
+                    x_pos=$(seq 0 $horiz_len $horiz_res)
+                fi
                 # turn IDs and x_pos into array so that they're interable
                 arr_xPos=($x_pos)
 
                 # automatically tile the windows into vertical columns
                 count=0 # count number of windows
                 st_trim_w=(); st_trim_x=()
+               
                 #account for window padding summing
                 padd=$(($winTiles*2))
                 for ((ii=0; ii < ${#arr_IDs[@]} ; ii++)) ; do    
+               
                     # adjust padding
                     w_pad=${w_padding[ii]}; w_pad=${w_pad[@]%,} #remove traling comma for arithmetic
                     x_pos=${arr_xPos[ii]}; x_pad=${x_padding[ii]};x_pad=${x_pad[@]%,}
@@ -123,19 +133,18 @@ do
                         trim_w=$(($horiz_len-$x_pad/$padd))
                         trim_x=$(($x_pos+$x_pad/$padd))
                     fi
-                    #x_pos=${arr_xPos[ii]}; x_pad=${x_padding[ii]};x_pad=${x_pad[@]%,}
-                    #if [[ -z "$x_pad" ]]; then
-                        #trim_x=$(($x_pos+$x_avg*2))
-                    #else
-                        #trim_x=$(($x_pos+$x_pad/$padd))
-                    #fi
-                    
+
+                    #custom padding if only one window
+                    if [[ ${winTiles} == 1 ]]; then
+                        trim_x=$x_pos
+                        trim_w=$(($horiz_len-$x_pos))
+                    fi
+
                     st_trim_w+=($trim_w); st_trim_x+=($trim_x)
                     $(wmctrl -ir ${arr_IDs[ii]} -e 0,$trim_x,0,$trim_w,$vert_res)
-                    #$(wmctrl -ir ${arr_IDs[ii]} -b toggle,maximized_vert)
                     ((count++))
                 done
-                #printf '%s\n' "${st_trim_x[@]}"
+                
                 # swap active window to center tile [if even then one of center]
                 if [ $((count%2)) -eq 0 ];
                     then
@@ -147,7 +156,6 @@ do
             74) # F8 -> swap active window to center
                 for ((ii=0; ii < ${#arr_IDs[@]} ; ii++)) ; do    
                     $(wmctrl -ir ${arr_IDs[ii]} -e 0,${st_trim_x[ii]},0,${st_trim_w[ii]},$vert_res)
-                    $(wmctrl -ir ${arr_IDs[ii]} -b toggle,maximized_vert)
                 done
                 
                 #swap active win to center

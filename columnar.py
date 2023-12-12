@@ -20,9 +20,14 @@ from gi.repository import Notify as notify
 
 APPINDICATOR_ID = 'myappindicator'
 
+# change the working directory when script is run through command-line
+abspath = os.path.abspath(__file__)
+dirname = os.path.dirname(abspath)
+os.chdir(dirname)
 
 def main():
     indicator = appindicator.Indicator.new(APPINDICATOR_ID, os.path.abspath('columnar.svg'), appindicator.IndicatorCategory.SYSTEM_SERVICES)
+    #indicator = appindicator.Indicator.new(APPINDICATOR_ID, os.path.normpath(os.path.join('/home/uwuntu/Columnar','columnar.svg')), appindicator.IndicatorCategory.SYSTEM_SERVICES)
     indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
     indicator.set_menu(build_menu())
     notify.init(APPINDICATOR_ID)

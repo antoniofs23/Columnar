@@ -7,9 +7,10 @@
 #           horizontally tiles your open windows
 #           Ignores all minized windows
 #
-#    F7: auto-tiles all windows into horizontal stacks
-#    F8: swaps the active window to center tile
-#    F9: hides active window   
+#    F7:  auto-tiles all windows into horizontal stacks
+#    F8:  swaps the active window to center tile
+#    F9:  hides active window   
+#    F10: stops the app 
 #
 #    If a window is closed or another is open you can re-tile
 #    by pressing F7

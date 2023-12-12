@@ -104,7 +104,7 @@ do
                     x_pos=$(($horiz_res-$horiz_len))
                 else
                     # get the x position of each window
-                    x_pos=$(seq 0 $horiz_len $horiz_res)
+                    x_pos=$(seq 1 $horiz_len $horiz_res) #changed from 0 to 1
                 fi
                 # turn IDs and x_pos into array so that they're interable
                 arr_xPos=($x_pos)
@@ -120,15 +120,22 @@ do
                     # adjust padding
                     w_pad=${w_padding[ii]}; w_pad=${w_pad[@]%,} #remove traling comma for arithmetic
                     x_pos=${arr_xPos[ii]}; x_pad=${x_padding[ii]};x_pad=${x_pad[@]%,}
+                    # can actually comment all of this out and just use the 1 pixel padding.
+                    # all of this math doesnt amount to much of a difference but maybe is better on the 
+                    # long run when account for different display sizes. 
+                    # Unfortunately I can only test on my 49" ultrawide 
                     if [[ -z "$w_pad" ]]; then
                         # add average padding if none exists
                         trim_w=$(($horiz_len-$x_avg*2))
                         trim_x=$(($x_pos+$x_avg*2))
+                        #trim_w=$(($horiz_len-1))
+                        #trim_x=$(($x_pos+1))
                     else
                         trim_w=$(($horiz_len-$x_pad/$padd))
                         trim_x=$(($x_pos+$x_pad/$padd))
+                        #trim_w=$(($horiz_len-1))
+                        #trim_x=$(($x_pos+1))
                     fi
-
                     #custom padding if only one window
                     if [[ ${winTiles} == 1 ]]; then
                         trim_x=$x_pos

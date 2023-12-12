@@ -14,8 +14,6 @@
 #    If a window is closed or another is open you can re-tile
 #    by pressing F7
 #
-# **** x_pos controls the left margin 
-# **** x_width (trim_W) controls the right margin
 
 xinput test-xi2 --root 3 | grep -A2 --line-buffered RawKeyRelease | while read -r line;
 do
@@ -127,6 +125,8 @@ do
                     # all of this math doesnt amount to much of a difference but maybe is better on the 
                     # long run when account for different display sizes. 
                     # Unfortunately I can only test on my 49" ultrawide 
+                    # **** x_pos controls the left margin 
+                    # **** x_width (trim_W) controls the right margin
                     if [[ -z "$w_pad" ]]; then
                         # add average padding if none exists
                         trim_w=$(($horiz_len-$x_avg*2))

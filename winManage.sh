@@ -169,6 +169,9 @@ do
                 ;;
             75) # F9 -> hide active window
                 $(xdotool windowminimize $(xdotool getactivewindow))
+                ;;
+            76) # F10 -> exit app
+                exit
 
         esac
     fi

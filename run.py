@@ -16,6 +16,8 @@ gi.require_version('Notify', '0.7')
 from gi.repository import Gtk as gtk
 from gi.repository import AppIndicator3 as appindicator
 from gi.repository import Notify as notify
+from gi.repository import GLib
+
 
 APPINDICATOR_ID = 'myappindicator'
 
@@ -31,11 +33,11 @@ def main():
 def build_menu():
     menu = gtk.Menu()
 
-    item_myapp = gtk.MenuItem('on')
+    item_myapp = gtk.MenuItem('activate')
     item_myapp.connect('activate', myapp)
     menu.append(item_myapp)
 
-    item_quit1 = gtk.MenuItem('off')
+    item_quit1 = gtk.MenuItem('quit')
     item_quit1.connect('activate', quit1)
     menu.append(item_quit1)
 
@@ -47,9 +49,10 @@ def myapp(_):
     subprocess.call("~/Columnar/winManage.sh", shell=True)
     return myapp
 
-
+# closes icon <doesnt close app | F10 closes app
 def quit1(_):
     gtk.main_quit()
+
 
 
 if __name__ == "__main__":

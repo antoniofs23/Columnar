@@ -1,13 +1,17 @@
-#!/usr/bin/python
-
 # Minimal Ubuntu AppIndicator in Python, with custom icon and a "Quit" menu item
+# instructions can be found here:
+# https://candidtim.github.io/appindicator/2014/09/13/ubuntu-appindicator-step-by-step.html
 
 import os
 import signal
-import json
 import subprocess
 
-from urllib2 import Request, urlopen # URLError
+# to avoid warnings and code crashes first import gi
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('Gst', '1.0')
+gi.require_version('AppIndicator3', '0.1')
+gi.require_version('Notify', '0.7')
 
 from gi.repository import Gtk as gtk
 from gi.repository import AppIndicator3 as appindicator
@@ -27,11 +31,11 @@ def main():
 def build_menu():
     menu = gtk.Menu()
 
-    item_myapp = gtk.MenuItem('MyApp')
+    item_myapp = gtk.MenuItem('on')
     item_myapp.connect('activate', myapp)
     menu.append(item_myapp)
 
-    item_quit1 = gtk.MenuItem('Quit')
+    item_quit1 = gtk.MenuItem('off')
     item_quit1.connect('activate', quit1)
     menu.append(item_quit1)
 
@@ -40,12 +44,11 @@ def build_menu():
 
 
 def myapp(_):
-    subprocess.call("myapp.sh", shell=True)
+    subprocess.call("~/Columnar/winManage.sh", shell=True)
     return myapp
 
 
 def quit1(_):
-    notify.uninit()
     gtk.main_quit()
 
 

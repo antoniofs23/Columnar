@@ -62,7 +62,7 @@ Press  `F9` to minimize a window:
 Press `F7` again to re-tile ignoring minimized windows
 ![Screencast from 12-12-2023 08_50_33 PM](https://github.com/antoniofs23/Columnar/assets/39067846/dce00eef-2ede-4bb5-9424-c4e4ae551f70)
 
-Press `F8` to swap the active window with the center window (if num of tiles is even than moves to left-center)
+Press `F8` to swap the active window with the center window (if num of tiles is even then moves to left-center)
 ![Screencast from 12-12-2023 08_51_00 PM](https://github.com/antoniofs23/Columnar/assets/39067846/9faca0eb-f869-4fed-b3ec-60199168bf20)
 
 You can always press `F7` to re-tile after mninizing or closing some windows. That should cover everything!

@@ -47,7 +47,7 @@ after you create the alias you can call `columnar` through the terminal.
 ### Running on startup/login
 To run the app automatically on startup do the following:
 1. create a `columnar.desktop` file in your `.config/autostart` directory
-2. Paste the following in `columnar.desktop`
+2. Paste the following in `columnar.desktop` (make sure to replace path with your username)
 ```
 [Desktop Entry]
 Type=Application

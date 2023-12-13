@@ -1,5 +1,3 @@
-# Columnar
-
 # Quick Intro
 A tiling-window-manager built on linux inspired by Amethyst for MacOS. 
 
@@ -13,7 +11,6 @@ Alas **Columnar!** A stupid simple tiling-window-manager:
 
 This was built for my needs on a 49" ultrawide monitor. If anyone wants to add more functionality, improve it for smaller screens, or fix a bug? feel free to send a pull request!
 
----
 # Installation
 To install the app clone this repo into your home directory:
 `git clone https://github.com/antoniofs23/Columnar.git`
@@ -31,7 +28,6 @@ installing `wmctrl`:
 The app also requires `python3` and `GTK`. 
 To install the python requirements run the following `pip install -r requirements.txt`
 
----
 # Running the app
 
 You can run an app as a background process by creating an alias in the `.bashrc`
@@ -45,6 +41,8 @@ then you need to source the file in your terminal by running the following:
 after you create the alias you can call `columnar` through the terminal or just add it as a start-up process. On Ubuntu this can be done via the `Startup Application Preferences` App.
 
 The app lives on your top-menu-bar:
+
+![](https://github.com/antoniofs23/Columnar/blob/master/app-icon.png?raw=true)
 
 ![[app-icon.png]]
 

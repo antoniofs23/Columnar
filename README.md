@@ -54,6 +54,9 @@ The app lives on your top-menu-bar:
 Press `F7` after clicking `activate` on the app icon to auto-tile:
 ![Screencast from 12-12-2023 08_40_52 PM](https://github.com/antoniofs23/Columnar/assets/39067846/3de5a45f-81e2-4fac-8121-066edee2e4e7)
 
+Press  `F9` to minimize a window:
+![Screencast from 12-12-2023 08_50_15 PM](https://github.com/antoniofs23/Columnar/assets/39067846/96c08ce9-fdf0-457c-9a52-303ff03e3405)
+
 
 
 

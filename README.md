@@ -57,7 +57,8 @@ Press `F7` after clicking `activate` on the app icon to auto-tile:
 Press  `F9` to minimize a window:
 ![Screencast from 12-12-2023 08_50_15 PM](https://github.com/antoniofs23/Columnar/assets/39067846/96c08ce9-fdf0-457c-9a52-303ff03e3405)
 
-
+Press `F7` again to re-tile ignoring minimized windows
+![Screencast from 12-12-2023 08_50_33 PM](https://github.com/antoniofs23/Columnar/assets/39067846/dce00eef-2ede-4bb5-9424-c4e4ae551f70)
 
 
 

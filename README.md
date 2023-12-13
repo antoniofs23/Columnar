@@ -44,23 +44,6 @@ then you need to source the file in your terminal by running the following:
 
 after you create the alias you can call `columnar` through the terminal.
 
-### Running as a startup process
-You can add the following to your `/etc/rc.local` file:
-
-```python3 /home/"user"/Columnar/columnar.py &```
-
-If your `/etc/rc.local` file doesn't exist do the following:
-1. `sudo nano /etc/rc.local`
-2. `sudo chmod +x /etc/rc.local`
-
-place the following in the file:
-```
-#!/bin/sh -e
-
-python3 /home/"user"/Columnar/columnar.py &
-
-exit 0
-```
 
 ### app-location
 The app lives on your top-menu-bar:

@@ -51,7 +51,7 @@ The app lives on your top-menu-bar:
 2. To turn the app **OFF** press `F10`  
 3. To get rid of the icon click quit otherwise go back to step 1
 
-# GIF of app functionality
+# App functionality-walkthrough
 
 Press `F7` after clicking `activate` on the app icon to auto-tile:
 ![Screencast from 12-12-2023 08_40_52 PM](https://github.com/antoniofs23/Columnar/assets/39067846/3de5a45f-81e2-4fac-8121-066edee2e4e7)

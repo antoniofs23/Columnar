@@ -32,7 +32,7 @@ To install the python requirements run the following `pip install -r requirement
 
 # Running the app
 
-## Running via terminal 
+### Running via terminal 
 You can run an app as a background process by creating an alias in the `.bashrc`
 
 Add the following line of code to your `.bashrc`
@@ -44,7 +44,7 @@ then you need to source the file in your terminal by running the following:
 
 after you create the alias you can call `columnar` through the terminal.
 
-## Running as a startup process
+### Running as a startup process
 You can add the following to your `/etc/rc.local` file:
 
 ```python3 /home/"user"/Columnar/columnar.py &```
@@ -62,7 +62,7 @@ python3 /home/"user"/Columnar/columnar.py &
 exit 0
 ```
 
-
+### app-location
 The app lives on your top-menu-bar:
 
 ![app-icon](https://github.com/antoniofs23/Columnar/assets/39067846/f50fcc19-b39b-4401-bcb7-7fa023ec7f38)

@@ -1,7 +1,7 @@
 # Quick Intro
 A tiling-window-manager built on linux inspired by Amethyst for MacOS. 
 
-This was very much a passion project since I didn't want to install a whole new window manager or mess around with existing linux based window managers that were overly complicated. All I wanted was to be able to tile my open windows into columns with the press of a key.
+This was very much a passion project since I didn't want to install a whole new window manager or mess around with existing linux based window managers that were overly complicated. All I wanted was to tile my open windows into columns with the press of a key.
 
 Alas **Columnar!** A stupid simple tiling-window-manager:
 1. `F7`: starts auto tiling

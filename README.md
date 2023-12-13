@@ -13,12 +13,14 @@ This was built for my needs on a 49" ultrawide monitor. If anyone wants to add m
 
 # Installation
 To install the app clone this repo into your home directory:
-```git clone https://github.com/antoniofs23/Columnar.git```
+
+``` git clone https://github.com/antoniofs23/Columnar.git ```
 #### Dependencies
 
 The tiling shell-script requires `xdotool` and `wmctrl` 
 
 installing `xdotool`on a Debian based system:
+
 ```sudo apt-get install xdotool```
 
 installing `wmctrl`:

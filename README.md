@@ -44,6 +44,24 @@ then you need to source the file in your terminal by running the following:
 
 after you create the alias you can call `columnar` through the terminal.
 
+### Running on startup/login
+To run the app automatically on startup do the following:
+1. create a `columnar.desktop` file in your `.config/autostart` directory
+2. Paste the following in `columnar.desktop`
+```
+[Desktop Entry]
+Type=Application
+Path=/home/your_username/Columnar/
+Exec=python3 columnar.py
+Terminal=false
+Icon=htop
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Columnar
+Comment[en_US]=runs columnar
+```
+to make sure that it works you can then run `gio launch columnar.desktop` or just log-in and out
 
 ### app-location
 The app lives on your top-menu-bar:

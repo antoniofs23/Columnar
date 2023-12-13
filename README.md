@@ -41,7 +41,10 @@ Add the following line of code to your `.bashrc`
 then you need to source the file in your terminal by running the following:
 ```source .bashrc```
 
-after you create the alias you can call `columnar` through the terminal or just add it as a start-up process. On Ubuntu this can be done via the `Startup Application Preferences` App.
+after you create the alias you can call `columnar` through the terminal or just add it as a start-up process. 
+
+On Ubuntu this can be done via the `Startup Application Preferences` App. Or alternatively you can add it as a bootup process
+by placing the alias in your `/etc/rc.local` file. 
 
 The app lives on your top-menu-bar:
 

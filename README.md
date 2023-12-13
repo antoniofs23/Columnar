@@ -42,9 +42,6 @@ after you create the alias you can call `columnar` through the terminal or just 
 
 The app lives on your top-menu-bar:
 
-![test](https://github.com/antoniofs23/Columnar/blob/master/app-icon.png?raw=true)
-
-![[app-icon.png]]
 
 1. To turn the auto-tiling **ON** first click activate then press `F7`
 2. To turn the app **OFF** press `F10`  
@@ -52,7 +49,7 @@ The app lives on your top-menu-bar:
 
 # GIF of app functionality
 
-![[app-walk.gif]]
+
 
 
 

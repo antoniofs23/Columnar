@@ -42,7 +42,7 @@ after you create the alias you can call `columnar` through the terminal or just 
 
 The app lives on your top-menu-bar:
 
-![](https://github.com/antoniofs23/Columnar/blob/master/app-icon.png?raw=true)
+![test](https://github.com/antoniofs23/Columnar/blob/master/app-icon.png?raw=true)
 
 ![[app-icon.png]]
 

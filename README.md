@@ -41,7 +41,7 @@ then you need to source the file in your terminal by running the following:
 after you create the alias you can call `columnar` through the terminal or just add it as a start-up process. On Ubuntu this can be done via the `Startup Application Preferences` App.
 
 The app lives on your top-menu-bar:
-
+![app-icon](https://github.com/antoniofs23/Columnar/assets/39067846/f50fcc19-b39b-4401-bcb7-7fa023ec7f38)
 
 1. To turn the auto-tiling **ON** first click activate then press `F7`
 2. To turn the app **OFF** press `F10`  

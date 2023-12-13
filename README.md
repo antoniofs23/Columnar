@@ -33,7 +33,8 @@ To install the python requirements run the following `pip install -r requirement
 # Running the app
 
 You can run an app as a background process by creating an alias in the `.bashrc`
-add the following line of code to your `.bashrc`
+
+Add the following line of code to your `.bashrc`
 
 ```alias columnar='python3 ~/Columnar/columnar.py &'```
 

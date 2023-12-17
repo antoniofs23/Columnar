@@ -1,7 +1,3 @@
-# Minimal Ubuntu AppIndicator in Python, with custom icon and a "Quit" menu item
-# instructions can be found here:
-# https://candidtim.github.io/appindicator/2014/09/13/ubuntu-appindicator-step-by-step.html
-
 import os
 import signal
 import subprocess
@@ -53,7 +49,6 @@ def myapp(_):
     return myapp
 
 
-# closes icon <doesnt close app | F10 closes app>
 def quit1(_):
     gtk.main_quit()
 

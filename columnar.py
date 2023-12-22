@@ -49,7 +49,6 @@ def myapp(_):
     return myapp
 
 
-# closes icon <doesnt close app | F10 closes app>
 def quit1(_):
     gtk.main_quit()
 

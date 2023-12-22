@@ -5,7 +5,7 @@
 # 3. sets app as a start-up process
 
 # 1. Create a terminal alias in .bashrc
-echo "alias columnar='python3 ~/columnar/columnar.py &'" >> ~/.bashrc
+echo "alias columnar='python3 ~/Columnar/columnar.py &'" >> ~/.bashrc
 
 # 2. Install python dependencies
 pip install -r requirements.txt
@@ -18,7 +18,7 @@ cd ~/.config/autostart/
 cat <<EOT >> columnar.desktop
 [Desktop Entry]
 Type=Application
-Path=/home/$name/columnar/
+Path=/home/$name/Columnar/
 Exec=python3 columnar.py
 Terminal=false
 Icon=htop

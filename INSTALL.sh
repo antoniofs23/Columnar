@@ -5,7 +5,7 @@
 # 3. sets app as a start-up process
 
 # 1. Create a terminal alias in .bashrc
-echo "alias columnar='python3 ~/columnar/main.py &'" >> ~/.bashrc
+echo "alias columnar='python3 ~/columnar/columnar.py &'" >> ~/.bashrc
 
 # 2. Install python dependencies
 pip install -r requirements.txt

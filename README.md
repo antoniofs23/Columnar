@@ -23,7 +23,8 @@ clone this repo to your home directory via:
 The app should auto-start on login.
 However, it can also be run through the `columnar` terminal command
 
-### app-location
+---
+
 The app lives on your top-menu-bar:
 
 ![app-icon](https://github.com/antoniofs23/Columnar/assets/39067846/f50fcc19-b39b-4401-bcb7-7fa023ec7f38)

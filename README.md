@@ -1,3 +1,5 @@
+[![Python application](https://github.com/antoniofs23/Columnar/actions/workflows/python-app.yml/badge.svg)](https://github.com/antoniofs23/Columnar/actions/workflows/python-app.yml)
+
 # Quick Intro
 A linux tiling-window-manager inspired by Amethyst for MacOS. 
 

@@ -11,57 +11,15 @@ Alas **Columnar!** A stupid simple tiling-window-manager:
 
 This was built for my needs on a 49" ultrawide monitor. If anyone wants to add more functionality, improve it for smaller screens, or fix a bug? feel free to send a pull request!
 
-# Installation
-To install the app clone this repo into your home directory:
+## Installation
+clone this repo to your home directory via:
 
-``` git clone https://github.com/antoniofs23/Columnar.git ```
-#### Dependencies
+1. `git clone https://github.com/antoniofs23/Columnar.git`
+2. In app directory run the `INSTALL.sh` file
 
-The tiling shell-script requires `xdotool` and `wmctrl` 
-
-installing `xdotool`on a Debian based system:
-
-```sudo apt-get install xdotool```
-
-installing `wmctrl`:
-1. `sudo apt-get update -y`
-2. `sudo apt-get install -y wmctrl`
-
-The app also requires `python3` and `GTK`. 
-To install the python requirements run the following `pip install -r requirements.txt`
-
-# Running the app
-
-### Running via terminal 
-You can run an app as a background process by creating an alias in the `.bashrc`
-
-Add the following line of code to your `.bashrc`
-
-```alias columnar='python3 ~/Columnar/columnar.py &'```
-
-then you need to source the file in your terminal by running the following:
-```source .bashrc```
-
-after you create the alias you can call `columnar` through the terminal.
-
-### Running on startup/login
-To run the app automatically on startup do the following:
-1. create a `columnar.desktop` file in your `.config/autostart` directory
-2. Paste the following in `columnar.desktop` (make sure to replace path with your username)
-```
-[Desktop Entry]
-Type=Application
-Path=/home/your_username/Columnar/
-Exec=python3 columnar.py
-Terminal=false
-Icon=htop
-Hidden=false
-NoDisplay=false
-X-GNOME-Autostart-enabled=true
-Name[en_US]=Columnar
-Comment[en_US]=runs columnar
-```
-to make sure that it works you can then run `gio launch columnar.desktop` or just log-in and out
+### running the app
+The app should auto-start on login.
+However, it can also be run through the `columnar` terminal command
 
 ### app-location
 The app lives on your top-menu-bar:

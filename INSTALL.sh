@@ -8,7 +8,8 @@
 echo "alias columnar='python3 ~/Columnar/columnar.py &'" >> ~/.bashrc
 
 # 2. Install python dependencies
-pip install -r requirements.txt
+#pip install -r requirements.txt
+
 
 # 3. set up as start-up process
 # get username 

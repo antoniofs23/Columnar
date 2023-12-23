@@ -14,8 +14,9 @@ Alas **Columnar!** A stupid simple tiling-window-manager:
 This was built for my needs on a 49" ultrawide monitor. If anyone wants to add more functionality, improve it for smaller screens, or fix a bug? feel free to send a pull request!
 
 ## Installation
-clone this repo to your home directory via:
 *the install file assumes python is already installed* if not python 3.10 is required prior to running `INSTALL.sh`
+
+clone this repo to your home directory via:
 
 1. `git clone https://github.com/antoniofs23/Columnar.git`
 2. In app directory run the `INSTALL.sh` file

@@ -14,7 +14,7 @@ Alas **Columnar!** A stupid simple tiling-window-manager:
 This was built for my needs on a 49" ultrawide monitor. If anyone wants to add more functionality, improve it for smaller screens, or fix a bug? feel free to send a pull request!
 
 ## Installation
-*the install file assumes python is already installed* if not python 3.10 is required prior to running `INSTALL.sh`
+*the install file assumes python is already installed (which it normally is)* if not python3 is required prior to running `INSTALL.sh`. To quickly check if python is installed run `python -V` in your terminal
 
 clone this repo to your home directory via:
 

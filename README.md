@@ -32,7 +32,9 @@ The app lives on your top-menu-bar:
 ![Screenshot from 2023-12-29 14-40-08](https://github.com/antoniofs23/Columnar/assets/39067846/0d0917b2-53ab-4b2b-9b53-bdf8ce719021)
 
 - The app is on by deafult and can be seen on your linux panel
-- To exit press `F10` (this removes the icon)
+- To exit press `F10`
+  - this removes the icon
+  - to restart run the `columnar` command on your terminal 
 
 # App functionality-walkthrough
 

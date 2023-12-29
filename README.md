@@ -29,12 +29,10 @@ However, it can also be run through the `columnar` terminal command
 
 The app lives on your top-menu-bar:
 
-![app-icon](https://github.com/antoniofs23/Columnar/assets/39067846/f50fcc19-b39b-4401-bcb7-7fa023ec7f38)
+![Screenshot from 2023-12-29 14-40-08](https://github.com/antoniofs23/Columnar/assets/39067846/0d0917b2-53ab-4b2b-9b53-bdf8ce719021)
 
-
-1. To turn the auto-tiling **ON** first click activate then press `F7`
-2. To turn the app **OFF** press `F10`  
-3. To get rid of the icon click quit otherwise go back to step 1
+- The app is on by deafult and can be seen on your linux panel
+- To exit press `F10`  
 
 # App functionality-walkthrough
 

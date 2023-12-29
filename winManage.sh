@@ -194,6 +194,7 @@ do
                 miniize_win
                 ;;
             76) # F10 -> exit app
+                pkill -f columnar.py 
                 exit
 
         esac

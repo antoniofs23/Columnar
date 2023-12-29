@@ -1,7 +1,6 @@
 [![Python application](https://github.com/antoniofs23/Columnar/actions/workflows/python-app.yml/badge.svg)](https://github.com/antoniofs23/Columnar/actions/workflows/python-app.yml)
 
 # Quick Intro
-A linux tiling-window-manager inspired by Amethyst for MacOS. 
 
 This was very much a passion project since I didn't want to install a whole new window manager or mess around with existing linux based window managers that were overly complicated. All I wanted was to tile my open windows into columns with the press of a key. 
 
@@ -11,7 +10,8 @@ Alas **Columnar!** A stupid simple tiling-window-manager:
 3. `F9`: minimizes a window
 4. `F10`: stops columnar
 
-This was built for my needs on a 49" ultrawide monitor. If anyone wants to add more functionality, improve it for smaller screens, or fix a bug? feel free to send a pull request!
+>[!NOTE]
+>This was built for my needs on a 49" ultrawide monitor. If anyone wants to add more functionality, improve it for smaller screens, or fix a bug? feel free to send a pull request!
 
 ## Installation
 

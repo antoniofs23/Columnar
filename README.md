@@ -38,7 +38,7 @@ The app lives on your top-menu-bar:
 
 # App functionality-walkthrough
 
-Press `F7` to auto-tile:
+Press `F7` to tile open windows:
 ![Screencast from 12-12-2023 08_40_52 PM](https://github.com/antoniofs23/Columnar/assets/39067846/3de5a45f-81e2-4fac-8121-066edee2e4e7)
 
 Press  `F9` to minimize a window:

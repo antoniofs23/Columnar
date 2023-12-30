@@ -5,10 +5,10 @@
 This was very much a passion project since I didn't want to install a whole new window manager or mess around with existing linux based window managers that were overly complicated. All I wanted was to tile my open windows into columns with the press of a key. 
 
 Alas **Columnar!** A stupid simple tiling-window-manager:
-1. `F7`: starts auto tiling
+1. `F7`: tiles all open windows (ignoring minimized)
 2. `F8`: swap active window to a center tile 
 3. `F9`: minimizes a window
-4. `F10`: stops columnar
+4. `F10`: exits app
 
 >[!NOTE]
 >This was built for my needs on a 49" ultrawide monitor. If anyone wants to add more functionality, improve it for smaller screens, or fix a bug? feel free to send a pull request!

@@ -6,8 +6,8 @@ This was very much a passion project since I didn't want to install a whole new 
 
 Alas **Columnar!** A stupid simple tiling-window-manager:
 1. `F7`: tiles all open windows (ignoring minimized)
-2. `F8`: swap active window to a center tile 
-3. `F9`: minimizes a window
+2. `F8`: swap active window to center tile
+3. `F9`: minimizes active window
 4. `F10`: exits app
 
 >[!NOTE]

@@ -15,15 +15,15 @@ from gi.repository import AppIndicator3 as appindicator
 from gi.repository import Notify as notify
 
 
-# run the script
-subprocess.call("~/Columnar/winManage.sh &", shell=True)
-
 APPINDICATOR_ID = "myappindicator"
 
 # change the working directory when script is run through command-line
 abspath = os.path.abspath(__file__)
 dirname = os.path.dirname(abspath)
 os.chdir(dirname)
+
+# run the script
+subprocess.call("./winManage.sh &", shell=True)
 
 
 def main():

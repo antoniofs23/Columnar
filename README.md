@@ -19,7 +19,8 @@ Alas **Columnar!** A stupid simple tiling-window-manager:
 2. In app directory run the `INSTALL.sh` file (first make it executable via `chmod +x INSTALL.sh`)
 
 >[!CAUTION]
->*the install file assumes python is already installed (which it normally is)* if not python3 is required prior to running `INSTALL.sh`. To quickly check if python is installed run `python -V` in your terminal
+>*the install file assumes python is already installed (which it normally is)* if not python3 is required prior to running `INSTALL.sh`
+>Built for GNOME on `X11`, will not work on `wayland` as it requires `xdotools` which there's no alternative for as far as i know
 
 ### running the app
 The app should auto-start on login.
